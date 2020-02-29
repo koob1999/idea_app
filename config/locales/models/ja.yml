@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              format: '%{message}'
+              blank: １文字以上入力してください。

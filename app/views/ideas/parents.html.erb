@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    
+</head>
+<body>
+    <% num = 0 %>
+    <div class = "sky_box">
+        <% @ideas.each do |idea| %>
+            <div style = "display: inline-block; width: 100%; height: 400px">
+                <% if num%2 == 0 %>
+                    <div class = "parent_babble" style = "float: right">
+                        <a> <%= link_to(idea.content, "/#{idea.id}/children") %> </a>
+                        <div class = "mini_babble" style = "margin-left: 40px">
+                            <%= link_to("/likes/#{idea.id}/parent_like", method: :post) do %>
+                                <span class = "fa fa-heart heart_btn"> <%= "#{idea.like}" %> </span>
+                            <% end %>
+                        </div>
+                    </div>
+                <% elsif num%2 == 1 %>
+                    <div class = "parent_babble" style = "float: left">
+                        <a> <%= link_to(idea.content, "/#{idea.id}/children") %> </a>
+                        <div class = "mini_babble" style = "margin-left: 40px">
+                            <%= link_to("/likes/#{idea.id}/parent_like", method: :post) do %>
+                                <span class = "fa fa-heart heart_btn"> <%= "#{idea.like}" %> </span>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+                <% num += 1 %>
+            </div>
+        <% end %>
+        <div style = "width: 100%; height: 400px">
+        </div>
+    </div>
+
+    <div class = "left_fixed">
+            <div class = "title">
+                <%= link_to("シャボン玉アイデア帳", "/") %>
+            </div>
+        <div class = "sub_title">
+            サイト説明
+        </div>
+        <div class = "sub_content">
+            自分が作ってみたいゲーム、小説、映画などのアイデアをシャボン玉に乗せて飛ばして、みんなでアイデアを膨らませていこう！
+        </div>
+        <div class = "sub_title">
+            このページでできること
+        </div>
+        <div class = "sub_content">
+            大まかなアイデアを考えたり、気に入ったアイデアがあればクリックしてそのアイデアをさらに膨らませていけるぞ！
+        </div>
+        <div class = "sub_title">
+            並び替え
+        </div>
+        <ul>
+            <li> <%= link_to("GOOD順", "/like") %> </li>
+            <li> <%= link_to("新着順", "/") %> </li>
+        </ul>
+        <div class = "sub_title">
+            ログイン状況
+        </div>
+        <div class = "sub_content">
+            <% if @current_user == nil %>
+                現在ログインしておりません
+                <div class = "login">
+                    <%= link_to("ログイン", "/posts/login_form") %>
+                </div>
+            <% else %>
+                <div>
+                    <%= @current_user.name %>様がログイン中です
+                </div>
+                <div class = "login">
+                    <%= link_to("ログアウト", "/posts/logout", method: :post) %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class = "right_fixed">
+        <div class = "sub_title">
+            アイデアをつくる
+        </div>
+        <div class = "sub_content">
+            <div class = "babble_deco" style = "left: 30%;">
+                <%= form_tag("/ideas/new_parent") do %>
+                        <input name = "text" style = "top: 45%; left: 10%;"> 
+                        <input type = "submit" value = "作成" style = "top: 60%; left: 40%">                    
+                <% end %>
+            </div>
+            <div style = "width: 100%; height: 150px;">
+                <div class = "babble_deco" style = "left: 10%; width: 150px; height: 150px">
+                </div>
+            </div>
+            <div style = "width: 100%; height: 100px;">
+                <div class = "babble_deco" style = "left: 50%; width: 100px; height: 100px">
+                </div>
+            </div>
+            <div style = "width:100%; height: 50px" >
+                <div class = "babble_deco" style = "left: 45%; width: 50px; height: 50px">
+                </div>
+            </div>
+            <div>
+            <div class = "babble_person" style = "width: 200px; height: 200px; margin: 0px auto" >
+                    <img src = "/syabondama_boy.png"> 
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class = "bottom_fixed">
+        <div class = "babble_person">
+                <img src = "/shyabondama_girl.png">
+        </div>
+    </div>
+</body>

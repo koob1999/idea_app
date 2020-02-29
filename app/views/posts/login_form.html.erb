@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+    
+</head>
+<body>
+    <div class = "create_user">
+        <%= link_to("新規登録", "/posts/new_user_form") %>
+    </div>
+    <div class = "login_form">
+        <%= form_tag("/posts/login") do %>
+            <input name = "name" placeholder = "ユーザー名">
+            <input type = "submit" value = "ログイン"> 
+        <% end %>
+    </div>
+</body>
+
